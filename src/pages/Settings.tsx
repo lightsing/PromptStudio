@@ -30,7 +30,7 @@ const Settings = () => {
       }
     }
     init().catch(logger.error('init'))
-  }, [appConfig, errorAppConfig, isAppConfigLoading])
+  }, [appConfig, errorAppConfig, isAppConfigLoading, updateAppConfig])
 
   const selectLanguage = async (lang: string) => {
     await Promise.all([updateAppConfig({ language: lang }), i18n.changeLanguage(lang)])

@@ -33,7 +33,8 @@ enum LogLevel {
   Error,
 }
 
-const log = async (level: LogLevel, location: String, ...data: any[]) => {
+// @ts-lint/no-explicit-any
+const log = async (level: LogLevel, location: string, ...data: unknown[]) => {
   const message = data
     .map((arg) => {
       if (typeof arg === 'object') {
@@ -78,41 +79,41 @@ export class Logger {
   }
 }
 
-export const error = (...locations: String[]) => {
+export const error = (...locations: string[]) => {
   const location = locations.join('::')
-  return (...data: any[]) => {
+  return (...data: unknown[]) => {
     console.error(location, ...data)
     log(LogLevel.Error, location, ...data).catch(console.error)
   }
 }
 
-export const warn = (...locations: String[]) => {
+export const warn = (...locations: string[]) => {
   const location = locations.join('::')
-  return (...data: any[]) => {
+  return (...data: unknown[]) => {
     console.warn(location, ...data)
     log(LogLevel.Warn, location, ...data).catch(console.error)
   }
 }
 
-export const info = (...locations: String[]) => {
+export const info = (...locations: string[]) => {
   const location = locations.join('::')
-  return (...data: any[]) => {
+  return (...data: unknown[]) => {
     console.info(location, ...data)
     log(LogLevel.Info, location, ...data).catch(console.error)
   }
 }
 
-export const debug = (...locations: String[]) => {
+export const debug = (...locations: string[]) => {
   const location = locations.join('::')
-  return (...data: any[]) => {
+  return (...data: unknown[]) => {
     console.debug(location, ...data)
     log(LogLevel.Debug, location, ...data).catch(console.error)
   }
 }
 
-export const trace = (...locations: String[]) => {
+export const trace = (...locations: string[]) => {
   const location = locations.join('::')
-  return (...data: any[]) => {
+  return (...data: unknown[]) => {
     console.trace(location, ...data)
     log(LogLevel.Trace, location, ...data).catch(console.error)
   }

@@ -73,7 +73,7 @@ fn main() {
         }));
     }
 
-    if let Err(e) = tauri::Builder::default()
+    let builder = tauri::Builder::default()
         .plugin(tauri_plugin_single_instance::init(|_app, _argv, _cwd| {}))
         .invoke_handler(tauri::generate_handler![
             logger::log,
@@ -89,22 +89,21 @@ fn main() {
             commands::chat_use_config,
             commands::get_chat_history,
         ])
-        .setup(|app| {
-            #[cfg(debug_assertions)]
-            {
-                let window = app.get_window("main").unwrap();
-                window.open_devtools();
-            }
-            Ok(())
-        })
         .on_window_event(|event| match event.event() {
             WindowEvent::Destroyed if event.window().label() == "main" => {
                 event.window().app_handle().exit(0);
             }
             _ => {}
-        })
-        .run(tauri::generate_context!())
-    {
+        });
+
+    #[cfg(debug_assertions)]
+    let builder = builder.setup(|app| {
+        let window = app.get_window("main").unwrap();
+        window.open_devtools();
+        Ok(())
+    });
+
+    if let Err(e) = builder.run(tauri::generate_context!()) {
         error!("error: {}", e);
         drop(guard.lock().unwrap().take());
         std::process::exit(1);

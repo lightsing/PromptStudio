@@ -5,7 +5,6 @@ on:
     branches:
       - release
 
-
 jobs:
   build-tauri:
     permissions:
@@ -14,6 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
 
       - uses: actions/setup-node@v4
         with:
@@ -35,6 +36,13 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
+      - uses: actions/cache@v2
+        name: Setup vite cache
+        with:
+          path: ./node_modules/.vite
+          key: ${{ runner.os }}-vite-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-vite-
 
       - uses: dtolnay/rust-toolchain@stable
       - uses: actions/cache@v3
@@ -46,13 +54,41 @@ jobs:
             ~/.cargo/git/db/
             src-tauri/target/
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
-      - uses: tauri-apps/tauri-action@v0
+      - name: Run tauri build
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+        run: |
+          rm -rf src-tauri/target/release/bundle
+          pnpm tauri build
+
+      - name: Get Release Version
+        id: get_release_version
+        shell: bash
+        run: |
+          echo "RELEASE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+          echo "IS_PRE_RELEASE=$(node -p "require('./package.json').version.includes('-')")" >> $GITHUB_ENV
+
+      - name: Generate release.json
+        shell: bash
+        run: |
+          pnpm gen-release
+          echo "RELEASE_NOTES=$(node -p "require('./release.json').notes")" >> $GITHUB_ENV
+
+      - name: Upload to Aliyun OSS
+        run: |
+          aliyun configure set --profile tauri --mode AK --region ${{ vars.ALIYUN_REGION }} --access-key-id ${{ secrets.ALIYUN_ACCESS_KEY_ID }} --access-key-secret ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+          aliyun oss cp ./release.json oss://prompt-studio/release.json --profile tauri -e oss-cn-guangzhou.aliyuncs.com -f
+          aliyun oss cp src-tauri/target/release/bundle/nsis/ oss://prompt-studio/download/ --profile tauri -e oss-cn-guangzhou.aliyuncs.com -r -f
+
+      - uses: ncipollo/release-action@v1
         with:
-          tagName: v__VERSION__
-          releaseName: 'v__VERSION__'
-          releaseBody: 'See the assets to download this version and install.'
-          releaseDraft: true
-          prerelease: true
+          artifacts: src-tauri/target/release/bundle/nsis/*
+          tag: v${{ env.RELEASE_VERSION }}
+          name: v${{ env.RELEASE_VERSION }}
+          body: ${{ env.RELEASE_NOTES }}
+          prerelease: ${{ env.IS_PRE_RELEASE }}

@@ -81,7 +81,7 @@ export const chatUseConfig = async (config: ChatConfig, message: string): Promis
 
 export interface HistoryMessage {
   role: ChatRole
-  content: String
+  content: string
 }
 
 export type ChatRole = 'user' | 'assistant'

@@ -1,10 +1,6 @@
+use tauri::command;
 
-
-
-use tauri::{command};
-
-
-use tracing::{Level};
+use tracing::Level;
 
 fn parse_level(level: u8) -> Level {
     match level {

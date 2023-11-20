@@ -2852,7 +2852,7 @@ dependencies = [
 
 [[package]]
 name = "prompt-studio"
-version = "0.0.1-3"
+version = "0.0.1-6"
 dependencies = [
  "async-openai",
  "backtrace",

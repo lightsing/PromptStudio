@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Prompt Studio",
-    "version": "0.0.1-3"
+    "version": "0.0.1-6"
   },
   "tauri": {
     "allowlist": {
@@ -40,7 +40,7 @@
         "icons/icon.ico"
       ],
       "identifier": "me.lightsing.prompt-studio",
-      "targets": "all",
+      "targets": ["nsis", "updater"],
       "windows": {
         "nsis": {
           "sidebarImage": "nsis/sidebar.bmp",

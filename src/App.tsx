@@ -37,7 +37,7 @@ const App = () => {
     if (currentChatUUID === null) {
       init().catch(logger.error('init'))
     }
-  }, [])
+  }, [currentChatUUID])
 
   const setActivePage = (page: string) => {
     setActivePageInner(page)

@@ -58,7 +58,7 @@ const Editor = ({ uuid }: EditorProps) => {
       }
     }
     init().catch(logger.error('init'))
-  }, [appConfig, isChatConfigOk, chatConfig, isAppConfigOk, availableModels, isAvailableModelsOk])
+  }, [appConfig, isChatConfigOk, chatConfig, updateChatConfig, isAppConfigOk, availableModels, isAvailableModelsOk])
 
   useEffect(() => {
     interface ChatStreamEvent {
@@ -90,7 +90,7 @@ const Editor = ({ uuid }: EditorProps) => {
         )
       } else if (delta.content) {
         streamUpdateHistory((current) => {
-          const last = current?.[current.length - 1]!
+          const last = current![current!.length - 1]
           return [...current!.slice(0, -1), { ...last, content: last.content + delta.content! }]
         }).catch(logger.error('streamUpdateHistory'))
       }
@@ -99,7 +99,7 @@ const Editor = ({ uuid }: EditorProps) => {
     return () => {
       cancel.then((fn) => fn())
     }
-  }, [])
+  }, [uuid, streamUpdateHistory])
 
   const messageStyle = {
     backgroundColor: tokens.colorNeutralBackground5,
