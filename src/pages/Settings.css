@@ -1,0 +1,71 @@
+.settings {
+  padding: 15px;
+  width: 100%;
+
+  & h1 {
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  & h2 {
+    font-size: 15px;
+    font-weight: 400;
+    padding: 10px 0 0 0;
+  }
+
+  .setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .setting-item {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fcfbfb;
+      border: 1px solid #e6e6e6;
+      border-radius: 5px;
+
+      .setting-item-value {
+        width: 50%;
+      }
+
+      .setting-item-label {
+        display: inline-block;
+        width: 100px;
+      }
+
+      .api-key {
+        &::before {
+          color: #000000;
+          content: '***************';
+          display: inline-block;
+        }
+
+        &:hover {
+          &::before {
+            content: '';
+          }
+        }
+
+        &:has(:focus) {
+          &::before {
+            content: '';
+          }
+        }
+
+        & input {
+          color: #00000000;
+
+          &:hover {
+            color: #000000;
+          }
+          &:focus {
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}

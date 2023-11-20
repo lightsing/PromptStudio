@@ -1,0 +1,87 @@
+.title-bar {
+  height: 45px;
+  background: var(--bg-light);
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+
+  .icon {
+    display: flex;
+    width: 45px;
+    color: var(--ui-icon-light);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon.disabled {
+    color: var(--ui-disabled-light);
+  }
+
+  .icon.disabled:hover {
+    background-color: unset;
+  }
+
+  .icon:hover {
+    background-color: var(--bg-hover-light);
+  }
+
+  .left-widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+
+    .icon {
+      height: 35px;
+      width: 40px;
+      border-radius: 5px;
+    }
+
+    .icon.ChromeBack {
+      font-size: 12px;
+    }
+
+    .icon.GlobalNavButton {
+      font-size: 15px;
+    }
+
+    @keyframes rotate-animation {
+      from {
+        transform: rotateZ(0deg);
+      }
+      to {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    .icon.GlobalNavButton::before:active {
+      animation: rotate-animation 0.5s linear infinite;
+    }
+
+    .title {
+      white-space: nowrap;
+      padding-left: 10px;
+      font-size: 12px;
+    }
+  }
+
+  .window-control {
+    display: flex;
+    height: 30px;
+
+    .icon {
+      font-size: 10px;
+    }
+
+    .icon.ChromeClose:hover {
+      color: var(--ui-close-hover);
+      background-color: var(--ui-close-hover-bg);
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .title-bar .icon.GlobalNavButton {
+    display: none;
+  }
+}

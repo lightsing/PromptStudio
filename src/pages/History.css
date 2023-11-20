@@ -1,0 +1,33 @@
+.history {
+  padding: 15px 40px;
+  width: 100%;
+
+  .history-table {
+  }
+
+  .history-icon-wrapper {
+    filter: opacity(0);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    .icon {
+      padding: 5px;
+      font-size: 20px;
+    }
+  }
+
+  & div[role='row']:hover {
+    .history-icon-wrapper {
+      filter: opacity(1);
+      transition: filter 0.2s ease-in-out;
+    }
+  }
+
+  .history-body-wrapper {
+    height: calc(100vh - 180px);
+    overflow-y: scroll;
+  }
+
+  .fui-DataGridBody {
+  }
+}

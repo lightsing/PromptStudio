@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .splash {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(180deg, #13604c 0%, #74aa9c 100%);
+        user-select: none;
+
+        .title-container {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .title {
+            color: #fff;
+            text-align: center;
+            font-family:
+              Segoe UI,
+              sans-serif;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            z-index: 100;
+          }
+        }
+
+        .bg-shape {
+          position: absolute;
+          flex-shrink: 0;
+          border-radius: 100px;
+        }
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div data-tauri-drag-region class="splash">
+      <div data-tauri-drag-region class="title-container">
+        <span class="title">Prompt Studio</span>
+      </div>
+      <div
+        class="bg-shape"
+        style="
+          width: 354px;
+          height: 390px;
+          transform: rotate(118.739deg);
+          left: -40px;
+          top: -35px;
+          background: #3b7f6d;
+          z-index: 1;
+        "></div>
+      <div
+        class="bg-shape"
+        style="
+          width: 431px;
+          height: 733px;
+          transform: rotate(125.176deg);
+          left: 356px;
+          top: -289px;
+          background: #519080;
+          z-index: 2;
+        "></div>
+      <div
+        class="bg-shape"
+        style="
+          width: 396px;
+          height: 690px;
+          left: 420px;
+          top: 100px;
+          transform: rotate(-134.459deg);
+          background: #3b7f6d;
+          z-index: 3;
+        "></div>
+      <div
+        class="bg-shape"
+        style="
+          width: 304px;
+          height: 782px;
+          transform: rotate(-67.011deg);
+          left: 40px;
+          top: 35px;
+          background: #93c2b6;
+          z-index: 4;
+        "></div>
+      <div
+        class="bg-shape"
+        style="
+          width: 273px;
+          height: 390px;
+          transform: rotate(118.739deg);
+          left: -35px;
+          top: 31px;
+          border-radius: 0 100px 0 0;
+          background: #3b7f6d;
+          z-index: 5;
+        "></div>
+    </div>
+  </body>
+</html>

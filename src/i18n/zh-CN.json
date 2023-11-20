@@ -1,0 +1,49 @@
+{
+  "New": "新建",
+  "Unnamed": "未命名",
+  "Time": "时间",
+
+  "Editor": {
+    "Name": "名称",
+    "Prompt": "提示词",
+    "Model": "模型",
+    "SelectModel": "选择模型...",
+    "SaySomething": "说些什么...",
+
+    "ParameterSettings": "参数设置",
+    "FrequencyPenalty": "频率惩罚",
+    "PresencePenalty": "存在惩罚",
+    "MaxTokens": "最大 Token 数",
+    "Temperature": "温度",
+    "TopP": "核采样",
+
+    "About": {
+      "FrequencyPenalty": "取值范围为-2.0至2.0（默认为0）。\n正值对新生成内容中原有文本已经出现的词按出现频率施加惩罚，降低模型重复同一内容的倾向。",
+      "PresencePenalty": "取值范围为-2.0至2.0（默认为0）。\n正值对新生成内容中原有文本已出现的词施加惩罚，鼓励模型探讨新主题。",
+      "MaxTokens": "聊天生成中的最大 Token 数限制。",
+      "Temperature": "采样温度设定在0至2之间（默认为1）。\n较高的值（如0.8）使输出更随机，较低的值（如0.2）则使输出更集中和确切。\n通常建议调整此值或核采样，但不要同时调整两者。",
+      "TopP": "（默认为1）一种与温度采样不同的方法，即核采样。\n在此方法中，模型只考虑总概率中最高的Top P部分。\n例如，0.1表示只考虑概率质量最高的前10%的词。\n通常建议调整此值或温度，但不要同时调整两者。"
+    }
+  },
+
+  "Settings": {
+    "OpenAISettings": "OpenAI",
+    "GeneralSettings": "通用设置",
+    "PrivacySettings": "隐私设置",
+
+    "ApiKey": "API密钥",
+    "ApiBase": "API端点",
+    "OrgId": "组织ID",
+    "DefaultModel": "默认模型",
+    "DefaultModelUnSet": "未设置",
+
+    "SelectLanguage": "设置语言",
+    "AllowTelemetry": "允许发送遥测数据"
+  },
+
+  "Page": {
+    "Editor": "编辑器",
+    "History": "历史",
+    "Settings": "设置"
+  }
+}

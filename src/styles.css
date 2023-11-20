@@ -1,0 +1,48 @@
+:root {
+  --bg-light: #f3f3f3;
+  --bg-hover-light: #eaeaea;
+  --ui-separator-light: #eaeaea;
+  --ui-icon-light: #000000;
+  --ui-selected-light: #3b393c;
+  --ui-disabled-light: #c7c7c7;
+  --ui-close-hover: #ffffff;
+  --ui-close-hover-bg: #e81123;
+  --ui-button-light: #fefefe;
+  --ui-button-hover-light: #fafafa;
+  --ui-button-active-light: #fbfafa;
+  --ui-button-text-active-light: #a09f9f;
+  --ui-button-border-light: #edecec;
+
+  --transparent-border-size: 10px;
+  --title-bar-height: 35px;
+}
+
+.window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8a8a8a;
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -1,0 +1,98 @@
+{
+  "build": {
+    "beforeDevCommand": "pnpm dev --host",
+    "beforeBuildCommand": "pnpm build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "Prompt Studio",
+    "version": "0.0.1-3"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "window": {
+        "close": true,
+        "maximize": true,
+        "minimize": true,
+        "setDecorations": true,
+        "setFocus": true,
+        "setSize": true,
+        "setTitle": true,
+        "startDragging": true,
+        "unmaximize": true,
+        "unminimize": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "icon": [
+        "icons/icon32x32.png",
+        "icons/icon128x128.png",
+        "icons/icon.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "me.lightsing.prompt-studio",
+      "targets": "all",
+      "windows": {
+        "nsis": {
+          "sidebarImage": "nsis/sidebar.bmp",
+          "languages": [
+            "English",
+            "SimpChinese"
+          ],
+          "installerIcon": "icons/icon.ico",
+          "displayLanguageSelector": true
+        }
+      }
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "active": true,
+      "dialog": true,
+      "endpoints": [
+        "https://prompt-studio.oss-cn-guangzhou.aliyuncs.com/release.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEQyRjdGQTc2Q0ZDRjNDNTEKUldSUlBNL1BkdnIzMHU3TndUTFFsMUxGZkk3N1lJc3RMbkgxRHpvbDVnMW5wa3hVdVdCMml5TWYK",
+      "windows": {
+        "installMode": "passive"
+      }
+    },
+    "windows": [
+      {
+        "label": "main",
+        "fullscreen": false,
+        "resizable": true,
+        "title": "Prompt Studio",
+        "width": 800,
+        "height": 600,
+        "decorations": false,
+        "transparent": true,
+        "visible": false
+      },
+      {
+        "label": "splash",
+        "url": "splash.html",
+        "center": true,
+        "fullscreen": false,
+        "resizable": false,
+        "title": "Prompt Studio",
+        "width": 816,
+        "height": 504,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "skipTaskbar": true
+      }
+    ]
+  }
+}

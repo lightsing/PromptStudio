@@ -1,0 +1,42 @@
+.icon {
+  font-family: 'Segoe Fluent Icons';
+}
+.icon.GlobalNavButton::before {
+  content: '\E700';
+}
+.icon.Edit::before {
+  content: '\E70F';
+}
+.icon.Add::before {
+  content: '\E710';
+}
+.icon.Cancel::before {
+  content: '\E711';
+}
+.icon.Settings::before {
+  content: '\E713';
+}
+.icon.Delete::before {
+  content: '\E74D';
+}
+.icon.History::before {
+  content: '\E81C';
+}
+.icon.ChromeBack::before {
+  content: '\E830';
+}
+.icon.ChromeClose::before {
+  content: '\E8BB';
+}
+.icon.ChromeMinimize::before {
+  content: '\E921';
+}
+.icon.ChromeMaximize::before {
+  content: '\E922';
+}
+.icon.ChromeRestore::before {
+  content: '\E923';
+}
+.icon.SubscriptionAdd::before {
+  content: '\ED0E';
+}
