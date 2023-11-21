@@ -9,6 +9,7 @@ import History from './pages/History.tsx'
 import { createChatConfig } from './utils/command.ts'
 import { Logger } from './utils/log.ts'
 import { useAvailableModels } from './utils/hooks.ts'
+import About from './pages/About.tsx'
 
 const logger = new Logger('App.tsx')
 
@@ -107,6 +108,7 @@ const App = () => {
             <History setCurrentChatUUID={setCurrentChatUUID} setActivePage={setActivePage} />
           )}
           {activePage === 'settings' && <Settings />}
+          {activePage === 'about' && <About />}
         </div>
       </div>
     </div>

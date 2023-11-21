@@ -1,4 +1,4 @@
-import './History.css'
+import styles from './History.module.css'
 import { ChatConfig, createChatConfig, updateChatConfig } from '../utils/command.ts'
 import {
   DataGrid,
@@ -97,7 +97,7 @@ const History = ({ setCurrentChatUUID, setActivePage }: HistoryProps) => {
       },
       renderCell: (item) => {
         return (
-          <div className="icon-wrapper history-icon-wrapper">
+          <div className={`${styles['icon-wrapper']} ${styles['history-icon-wrapper']}`}>
             <span
               className="icon SubscriptionAdd"
               onClick={(e) => {
@@ -141,10 +141,10 @@ const History = ({ setCurrentChatUUID, setActivePage }: HistoryProps) => {
   }
 
   return (
-    <div className="history">
+    <div className={styles.history}>
       <h1>{t('Page.History')}</h1>
       <DataGrid
-        className="history-table"
+        className={styles['history-table']}
         items={getItems(chatHistoryList || [])}
         columns={columns}
         getRowId={(item) => item.uuid}
@@ -156,7 +156,7 @@ const History = ({ setCurrentChatUUID, setActivePage }: HistoryProps) => {
             {({ renderHeaderCell }) => <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>}
           </DataGridRow>
         </DataGridHeader>
-        <div className="history-body-wrapper">
+        <div className={styles['history-body-wrapper']}>
           <DataGridBody<Item>>
             {({ item }) => (
               <DataGridRow<Item> key={item.uuid} onClick={() => clickRow(item)}>

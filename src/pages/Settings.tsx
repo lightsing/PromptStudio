@@ -1,4 +1,4 @@
-import './Settings.css'
+import style from './Settings.module.css'
 import { Dropdown, Input, Label, Option } from '@fluentui/react-components'
 import { useTranslation } from 'react-i18next'
 import { LocalLanguage16Regular } from '@fluentui/react-icons'
@@ -37,83 +37,85 @@ const Settings = () => {
   }
 
   return (
-    <div className="settings">
+    <div className={style.root}>
       <h1>{t('Page.Settings')}</h1>
-      <h2>{t('Settings.OpenAISettings')}</h2>
-      <div className="setting-group">
-        <div className="setting-item">
-          <Label htmlFor="api-key" className="setting-item-label">
-            {t('Settings.ApiKey')}
-          </Label>
-          <Input
-            className="setting-item-value api-key"
-            disabled={isAppConfigLoading || errorAppConfig}
-            value={appConfig?.openai.apiKey || ''}
-            onChange={(e) => updateAppConfig({ openai: { apiKey: e.target.value } })}
-          />
+      <div className={style.settings}>
+        <h2>{t('Settings.OpenAISettings')}</h2>
+        <div className={style['setting-group']}>
+          <div className={style['setting-item']}>
+            <Label htmlFor="api-key" className="setting-item-label">
+              {t('Settings.ApiKey')}
+            </Label>
+            <Input
+              className={`${style['setting-item-value']} ${style['api-key']}`}
+              disabled={isAppConfigLoading || errorAppConfig}
+              value={appConfig?.openai.apiKey || ''}
+              onChange={(e) => updateAppConfig({ openai: { apiKey: e.target.value } })}
+            />
+          </div>
+          <div className={style['setting-item']}>
+            <Label htmlFor="api-base" className="setting-item-label">
+              {t('Settings.ApiBase')}
+            </Label>
+            <Input
+              className={style['setting-item-value']}
+              disabled={isAppConfigLoading || errorAppConfig}
+              value={appConfig?.openai.apiBase || ''}
+              onChange={(e) => updateAppConfig({ openai: { apiBase: e.target.value } })}
+            />
+          </div>
+          <div className={style['setting-item']}>
+            <Label htmlFor="org-id" className={style['setting-item-label']}>
+              {t('Settings.OrgId')}
+            </Label>
+            <Input
+              className={style['setting-item-value']}
+              disabled={isAppConfigLoading || errorAppConfig}
+              value={appConfig?.openai.orgId || ''}
+              onChange={(e) => updateAppConfig({ openai: { orgId: e.target.value } })}
+            />
+          </div>
+          <div className={style['setting-item']}>
+            <Label htmlFor="default-model" className={style['setting-item-label']}>
+              {t('Settings.DefaultModel')}
+            </Label>
+            <Dropdown
+              placeholder={t('Settings.DefaultModelUnSet')}
+              id="model"
+              size="medium"
+              className={style['setting-value']}
+              defaultValue={appConfig?.defaultModel}
+              disabled={isAppConfigLoading || errorAppConfig || isModelsLoading || errorModels}
+              onOptionSelect={(_, data) => updateAppConfig({ defaultModel: data.optionText })}>
+              {models?.map((option) => <Option key={option}>{option}</Option>)}
+            </Dropdown>
+          </div>
         </div>
-        <div className="setting-item">
-          <Label htmlFor="api-base" className="setting-item-label">
-            {t('Settings.ApiBase')}
-          </Label>
-          <Input
-            className="setting-item-value"
-            disabled={isAppConfigLoading || errorAppConfig}
-            value={appConfig?.openai.apiBase || ''}
-            onChange={(e) => updateAppConfig({ openai: { apiBase: e.target.value } })}
-          />
+        <h2>{t('Settings.GeneralSettings')}</h2>
+        <div className={style['setting-group']}>
+          <div className={style['setting-item']}>
+            <Label htmlFor="selectLanugage" className={style['setting-item-label']}>
+              <LocalLanguage16Regular />
+              {t('Settings.SelectLanguage')}
+            </Label>
+            <Dropdown
+              placeholder={t('Settings.SelectLanguage')}
+              id="selectLanugage"
+              size="medium"
+              className={style['setting-value']}
+              defaultValue={appConfig?.language}
+              disabled={isAppConfigLoading || errorAppConfig}
+              onOptionSelect={(_, data) => selectLanguage(data.optionText!).catch(logger.error('selectLanguage'))}>
+              {languageOptions.map(({ display, value }) => (
+                <Option key={value} text={value}>
+                  {display}
+                </Option>
+              ))}
+            </Dropdown>
+          </div>
         </div>
-        <div className="setting-item">
-          <Label htmlFor="org-id" className="setting-item-label">
-            {t('Settings.OrgId')}
-          </Label>
-          <Input
-            className="setting-item-value"
-            disabled={isAppConfigLoading || errorAppConfig}
-            value={appConfig?.openai.orgId || ''}
-            onChange={(e) => updateAppConfig({ openai: { orgId: e.target.value } })}
-          />
-        </div>
-        <div className="setting-item">
-          <Label htmlFor="default-model" className="setting-item-label">
-            {t('Settings.DefaultModel')}
-          </Label>
-          <Dropdown
-            placeholder={t('Settings.DefaultModelUnSet')}
-            id="model"
-            size="medium"
-            className="setting-value"
-            defaultValue={appConfig?.defaultModel}
-            disabled={isAppConfigLoading || errorAppConfig || isModelsLoading || errorModels}
-            onOptionSelect={(_, data) => updateAppConfig({ defaultModel: data.optionText })}>
-            {models?.map((option) => <Option key={option}>{option}</Option>)}
-          </Dropdown>
-        </div>
+        <h2>{t('Settings.PrivacySettings')}</h2>
       </div>
-      <h2>{t('Settings.GeneralSettings')}</h2>
-      <div className="setting-group">
-        <div className="setting-item">
-          <Label htmlFor="selectLanugage" className="setting-item-label">
-            <LocalLanguage16Regular />
-            {t('Settings.SelectLanguage')}
-          </Label>
-          <Dropdown
-            placeholder={t('Settings.SelectLanguage')}
-            id="selectLanugage"
-            size="medium"
-            className="setting-value"
-            defaultValue={appConfig?.language}
-            disabled={isAppConfigLoading || errorAppConfig}
-            onOptionSelect={(_, data) => selectLanguage(data.optionText!).catch(logger.error('selectLanguage'))}>
-            {languageOptions.map(({ display, value }) => (
-              <Option key={value} text={value}>
-                {display}
-              </Option>
-            ))}
-          </Dropdown>
-        </div>
-      </div>
-      <h2>{t('Settings.PrivacySettings')}</h2>
     </div>
   )
 }

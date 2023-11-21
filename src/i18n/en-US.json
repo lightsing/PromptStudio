@@ -1,14 +1,18 @@
 {
-  "Name": "Name",
-  "Prompt": "Prompt",
-  "Model": "Model",
-  "SelectModel": "Select a model...",
-  "SaySomething": "Say something...",
   "New": "New",
   "Unnamed": "Unnamed",
   "Time": "Time",
+  "Version": "Version",
+  "SoftwareInfo": "Software Info",
+  "License": "License",
 
   "Editor": {
+    "Name": "Name",
+    "Prompt": "Prompt",
+    "Model": "Model",
+    "SelectModel": "Select a model...",
+    "SaySomething": "Say something...",
+
     "ParameterSettings": "Parameter Settings",
     "FrequencyPenalty": "Frequency Penalty",
     "PresencePenalty": "Presence Penalty",
@@ -43,6 +47,7 @@
   "Page": {
     "Editor": "Editor",
     "History": "History",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "About": "About"
   }
 }

@@ -1,4 +1,5 @@
-import './SideMenu.css'
+import styles from './SideMenu.module.css'
+import { useTranslation } from 'react-i18next'
 
 interface SideMenuButtons {
   icon: string
@@ -20,34 +21,47 @@ interface SideMenuProps {
   onClick: (page: string) => void
 }
 const SideMenu = ({ buttons, pages, activePage, open, onClick }: SideMenuProps) => {
+  const { t } = useTranslation()
   return (
-    <div className={`side-menu ${open ? 'open' : ''}`}>
-      <div className="buttons">
+    <div className={`${styles.side} ${open ? styles.open : ''}`}>
+      <div className={styles.buttons}>
         {buttons.map((e) => (
-          <div className="button" onClick={e.onClick} key={e.text}>
-            <div className="icon-wrapper">
+          <div className={styles.button} onClick={e.onClick} key={e.text}>
+            <div className={styles['icon-wrapper']}>
               <span className={`icon ${e.icon}`}></span>
             </div>
-            <div className="text-wrapper">
-              <span className="text">{e.text}</span>
+            <div className={styles['text-wrapper']}>
+              <span>{e.text}</span>
             </div>
           </div>
         ))}
       </div>
-      <div className="pages">
+      <div className={`${styles.pages} ${styles.center}`}>
         {pages.map((e) => (
           <div
             key={e.text}
-            className={`page ${e.page === activePage ? 'active' : ''}`}
+            className={`${styles.page} ${e.page === activePage ? styles.active : ''}`}
             onClick={e.page === activePage ? undefined : () => onClick(e.page)}>
-            <div className="icon-wrapper">
+            <div className={styles['icon-wrapper']}>
               <span className={`icon ${e.icon}`}></span>
             </div>
-            <div className="text-wrapper">
-              <span className="text">{e.text}</span>
+            <div className={styles['text-wrapper']}>
+              <span>{e.text}</span>
             </div>
           </div>
         ))}
+      </div>
+      <div className={`${styles.pages} ${styles.bottom}`}>
+        <div
+          className={`${styles.page} ${'about' === activePage ? 'active' : ''}`}
+          onClick={'about' === activePage ? undefined : () => onClick('about')}>
+          <div className={styles['icon-wrapper']}>
+            <span className="icon Info"></span>
+          </div>
+          <div className={styles['text-wrapper']}>
+            <span>{t('Page.About')}</span>
+          </div>
+        </div>
       </div>
     </div>
   )
