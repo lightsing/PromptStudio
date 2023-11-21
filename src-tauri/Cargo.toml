@@ -1,6 +1,6 @@
 [package]
 name = "prompt-studio"
-version = "0.0.1-6"
+version = "0.0.1-7"
 description = "A Tauri App"
 authors = ["you"]
 license = "AGPL-3"
