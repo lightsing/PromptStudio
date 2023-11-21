@@ -77,7 +77,7 @@ jobs:
         shell: bash
         run: |
           pnpm gen-release
-          echo "RELEASE_NOTES=$(node -p "require('./release.json').notes")" >> $GITHUB_ENV
+          echo "RELEASE_NOTES=$(node -p "require('./release.json').notes" | jq -sR .)" >> $GITHUB_ENV
 
       - name: Upload to Aliyun OSS
         run: |
