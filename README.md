@@ -1,1 +1,1 @@
-# Prompt Studio
+![](./.github/splash.svg)
