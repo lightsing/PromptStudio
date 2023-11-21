@@ -7,6 +7,8 @@
 
 中文 | [English](./README.md)
 
+![](./.github/preview-zhCN.png)
+
 ## 描述
 
 PromptStudio 是一款面向 Windows 桌面的应用程序，旨在与 OpenAI 的 API 无缝交互。

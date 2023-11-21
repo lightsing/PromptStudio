@@ -2,6 +2,9 @@
   "New": "新建",
   "Unnamed": "未命名",
   "Time": "时间",
+  "Version": "版本",
+  "SoftwareInfo": "软件信息",
+  "License": "许可证",
 
   "Editor": {
     "Name": "名称",
@@ -44,6 +47,7 @@
   "Page": {
     "Editor": "编辑器",
     "History": "历史",
-    "Settings": "设置"
+    "Settings": "设置",
+    "About": "关于"
   }
 }

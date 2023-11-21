@@ -38,8 +38,8 @@
         .setting-label {
           width: 100px;
         }
-        .fui-Dropdown,
-        .fui-Input {
+        & > div,
+        & > span {
           min-width: 120px;
           width: 120px;
         }

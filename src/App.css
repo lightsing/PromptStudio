@@ -12,10 +12,12 @@
   .container {
     display: flex;
     flex-direction: row;
-    height: calc(100% - var(--title-bar-height));
+    width: calc(100vw - var(--transparent-border-size));
+    height: calc(100vh - var(--transparent-border-size) - var(--title-bar-height));
 
     .content {
-      flex-grow: 1;
+      width: 100%;
+      height: 100%;
       display: flex;
       border-top-left-radius: 8px;
       border: 1px solid var(--ui-separator-light);

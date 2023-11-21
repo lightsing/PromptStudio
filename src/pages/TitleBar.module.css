@@ -2,6 +2,7 @@
   height: 45px;
   background: var(--bg-light);
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
   user-select: none;
 
@@ -37,11 +38,11 @@
       border-radius: 5px;
     }
 
-    .icon.ChromeBack {
+    .icon.back {
       font-size: 12px;
     }
 
-    .icon.GlobalNavButton {
+    .icon.nav {
       font-size: 15px;
     }
 
@@ -73,7 +74,7 @@
       font-size: 10px;
     }
 
-    .icon.ChromeClose:hover {
+    .icon.close:hover {
       color: var(--ui-close-hover);
       background-color: var(--ui-close-hover-bg);
     }
@@ -81,7 +82,7 @@
 }
 
 @media screen and (min-width: 1000px) {
-  .title-bar .icon.GlobalNavButton {
+  .title-bar .icon.nav {
     display: none;
   }
 }

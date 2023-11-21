@@ -1,4 +1,4 @@
-import './Editor.css'
+import styles from './Editor.module.css'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import {
@@ -107,24 +107,24 @@ const Editor = ({ uuid }: EditorProps) => {
     boxShadow: tokens.shadow2,
   }
 
-  const styles = mergeStyleSets({
+  const messageStyles = mergeStyleSets({
     message: messageStyle,
     messageUser: { ...messageStyle, backgroundColor: tokens.colorBrandBackground },
   })
 
   return (
-    <div className="editor">
-      <div className="panel">
+    <div className={styles.editor}>
+      <div className={styles.panel}>
         <Input
-          className="name"
+          className={styles.name}
           placeholder={t('Editor.Name')}
           defaultValue={chatConfig?.name || ''}
           disabled={!isChatConfigOk}
           onChange={(e) => updateChatConfig({ name: e.target.value })}
         />
-        <div className="prompt-editor">
+        <div className={styles['prompt-editor']}>
           <Textarea
-            className="prompt"
+            className={styles.prompt}
             placeholder={t('Editor.Prompt')}
             defaultValue={chatConfig?.prompt || ''}
             disabled={!isChatConfigOk}
@@ -135,14 +135,14 @@ const Editor = ({ uuid }: EditorProps) => {
           <AccordionItem value="1">
             <AccordionHeader>{t('Editor.ParameterSettings')}</AccordionHeader>
             <AccordionPanel>
-              <div className="settings">
-                <div className="setting">
-                  <span className="setting-label">{t('Model')}</span>
+              <div className={styles.settings}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']}>{t('Model')}</span>
                   <Dropdown
                     placeholder={t('SelectModel')}
                     id="model"
                     size="small"
-                    className="setting-value"
+                    className={styles['setting-value']}
                     defaultValue={chatConfig?.model || ''}
                     disabled={!isChatConfigOk || !isAvailableModelsOk}
                     onOptionSelect={(_, data) => {
@@ -151,12 +151,12 @@ const Editor = ({ uuid }: EditorProps) => {
                     {availableModels?.map((option) => <Option key={option}>{option}</Option>)}
                   </Dropdown>
                 </div>
-                <div className="setting">
-                  <span className="setting-label" title={t('Editor.About.FrequencyPenalty')}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']} title={t('Editor.About.FrequencyPenalty')}>
                     {t('Editor.FrequencyPenalty')}
                   </span>
                   <Slider
-                    className="setting-value"
+                    className={styles['setting-value']}
                     id="frequency-penalty"
                     size="small"
                     min={-2.0}
@@ -166,12 +166,12 @@ const Editor = ({ uuid }: EditorProps) => {
                     defaultValue={chatConfig?.frequencyPenalty || 0}
                   />
                 </div>
-                <div className="setting">
-                  <span className="setting-label" title={t('Editor.About.PresencePenalty')}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']} title={t('Editor.About.PresencePenalty')}>
                     {t('Editor.PresencePenalty')}
                   </span>
                   <Slider
-                    className="setting-value"
+                    className={styles['setting-value']}
                     size="small"
                     min={-2.0}
                     max={2.0}
@@ -183,12 +183,12 @@ const Editor = ({ uuid }: EditorProps) => {
                     id="presence-penalty"
                   />
                 </div>
-                <div className="setting">
-                  <span className="setting-label" title={t('Editor.About.MaxTokens')}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']} title={t('Editor.About.MaxTokens')}>
                     {t('Editor.MaxTokens')}
                   </span>
                   <Input
-                    className="setting-value"
+                    className={styles['setting-value']}
                     placeholder="inf"
                     disabled={!isChatConfigOk}
                     value={chatConfig?.maxTokens?.toString() || ''}
@@ -209,12 +209,12 @@ const Editor = ({ uuid }: EditorProps) => {
                     }
                   />
                 </div>
-                <div className="setting">
-                  <span className="setting-label" title={t('Editor.About.Temperature')}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']} title={t('Editor.About.Temperature')}>
                     {t('Editor.Temperature')}
                   </span>
                   <Slider
-                    className="setting-value"
+                    className={styles['setting-value']}
                     size="small"
                     min={0}
                     max={2.0}
@@ -226,12 +226,12 @@ const Editor = ({ uuid }: EditorProps) => {
                     id="temperature"
                   />
                 </div>
-                <div className="setting">
-                  <span className="setting-label" title={t('Editor.About.TopP')}>
+                <div className={styles.setting}>
+                  <span className={styles['setting-label']} title={t('Editor.About.TopP')}>
                     {t('Editor.TopP')}
                   </span>
                   <Slider
-                    className="setting-value"
+                    className={styles['setting-value']}
                     size="small"
                     min={0}
                     max={1}
@@ -248,26 +248,28 @@ const Editor = ({ uuid }: EditorProps) => {
           </AccordionItem>
         </Accordion>
       </div>
-      <div className="right">
-        <div className="message-list">
+      <div className={styles.right}>
+        <div className={styles['message-list']}>
           {chatHistory?.map((item, index) => (
             <div
-              className={`message message-${item.role} ${item.role === 'user' ? styles.messageUser : styles.message}`}
+              className={`${styles.message} ${styles[`message-${item.role}`]} ${
+                item.role === 'user' ? messageStyles.messageUser : messageStyles.message
+              }`}
               key={index}>
               {item.content}
             </div>
           ))}
         </div>
-        <div className="sending">
+        <div className={styles.sending}>
           <Textarea
-            className="sending-area"
+            className={styles['sending-area']}
             placeholder={t('Editor.SaySomething')}
             disabled={!isChatConfigOk}
             value={message}
             onChange={(_, data) => setMessage(data.value)}
           />
           <Button
-            className="sending-button"
+            className={styles['sending-button']}
             icon={<Send16Regular />}
             appearance="primary"
             disabled={!isChatConfigOk || message.trim() === ''}

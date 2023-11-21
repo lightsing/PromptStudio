@@ -37,6 +37,12 @@
 .icon.ChromeRestore::before {
   content: '\E923';
 }
+.icon.Info::before {
+  content: '\E946';
+}
 .icon.SubscriptionAdd::before {
   content: '\ED0E';
+}
+.icon.PenPalette::before {
+  content: '\EE56';
 }
